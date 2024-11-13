@@ -2,12 +2,14 @@
 
 const http = require("http");
 const fs = require("fs");
+const path = require("path");
 
 const server = http.createServer((req, res) => {
   res.setHeader("Content-Type", "text/html");
   // 위 코드를 아래와 같이 작성해도 됩니다.
   // res.writeHead(200, { "Content-Type": "text/html" });
-  const readStream = fs.createReadStream(__dirname + "/index.html", "utf8");
+  const filePath = path.join(__dirname, "/../index.html");
+  const readStream = fs.createReadStream(filePath, "utf8");
   readStream.pipe(res);
 });
 
